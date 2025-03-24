@@ -1,0 +1,60 @@
+{% include 'header.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+<div class="container mt-2">
+    <h3 class="text-center mb-4">Purchase History</h3>
+    {{ render_form(form) }}
+    {% if result %}
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>User name:</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>New Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in result %}
+            <tr>
+                <td><a href="{{url_for('User_page',id=purchase.buyer.id)}}">{{ purchase.buyer.name }}</a></td>
+                <td><a href="{{url_for('Product_page',id=purchase.thing.id)}}">{{ purchase.thing.name }}</a></td>
+                <td>{{ purchase.quantity }}</td>
+                <td class="{% if purchase.status == 'Paid' %}text-success{% elif purchase.status == 'pending' %}text-warning{% else %}text-danger{% endif %}">
+                    {{ purchase.status.capitalize() }}
+                </td>
+                <td>
+                    <form method="POST" action="{{ url_for('Change_status',purchased_id=purchase.id) }}">
+    <select name="status" class="form-select">
+        <option value="Pending">Pending</option>
+        <option value="paid">paid</option>
+        <option value="delivered">delivered</option>
+        <option value="canceled">canceled</option>
+        <!-- Add more options dynamically if needed -->
+    </select>
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+</form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endif %}
+</div>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+        <div class="me-2">
+            <a href="{{url_for('Add')}}" class="btn btn-primary">Add product</a>
+        </div>
+        <div class="me-2">
+            <a href="{{url_for('All_products')}}" class="btn btn-secondary">All_products</a>
+        </div>
+        <div>
+            <a href="{{url_for('log_out')}}" class="btn btn-success">Log out</a>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+

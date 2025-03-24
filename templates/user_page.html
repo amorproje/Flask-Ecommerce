@@ -1,0 +1,30 @@
+{% include 'header.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+<div class="container mt-2">
+    <h3 class="text-center mb-4">User Details</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>User name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.address }}</td>
+                <td>
+                    {{ user.phone_number }}
+                </td>
+                <td>{{ user.email }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+{% include "footer.html" %}

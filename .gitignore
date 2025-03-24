@@ -1,0 +1,43 @@
+
+# Byte-compiled / cached files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+venv/
+.env/
+.env
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+*.log
+.idea/
+*.suo
+*.user
+*.swp
+*.sublime-workspace
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# Logs and Temporary Files
+logs/
+tmp/
+temp/
+
+
+
+# Miscellaneous
+.cache/
+.tmp/
+.npm/
+.yarn/
+.yarn-integrity
+

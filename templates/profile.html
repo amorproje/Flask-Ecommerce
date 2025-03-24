@@ -1,0 +1,41 @@
+{% include 'header.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+<div class="container" style="padding-top: 100px; padding-bottom: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Edit Profile</h2>
+                    {{ render_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-2">
+    <h3 class="text-center mb-4">Purchase History</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="table-primary">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in resultt %}
+            <tr>
+                <td>{{ purchase.thing.name }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td class="{% if purchase.status == 'Paid' %}text-success{% elif purchase.status == 'pending' %}text-warning{% else %}text-danger{% endif %}">
+                    {{ purchase.status.capitalize() }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% include "footer.html" %}
+

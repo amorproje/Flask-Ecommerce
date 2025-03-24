@@ -1,0 +1,29 @@
+{% include 'header.html' %}
+{% from "bootstrap5/form.html" import render_form %}
+
+
+{% if current_user.is_authenticated %}
+<div class="container" style="padding-top: 300px; padding-bottom: 400px;">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Add product</h2>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% endwith %}
+
+                    {{ render_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% include "footer.html" %}

@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+{%if products == 0%}
+<div class="d-flex flex-column justify-content-center align-items-center" style="min-height: calc(100vh - 120px); padding-top: 20px; padding-bottom: 20px;">
+    <h1 class="text-center">Add Gadgets and Cool devices to your card</h1>
+    <h3>See Products <a href="{{url_for('All_products')}}">Here</a></h3>
+</div>
+{%else%}}
+{% for prdc in products%}
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <!-- Product Card -->
+                <div class="card shadow-sm">
+                    <img src="{{prdc.thing.image_url}}" class="card-img-top" alt="Product Image">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">{{prdc.thing.name}}</h3>
+                        <h5 class="card-text text-muted">{{prdc.thing.decription}}</h5>
+                        <p class="card-text text-muted">Price: ${{prdc.thing.price}}</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{url_for('Minus_from_card',id=prdc.thing.id)}}"><i class="bi bi-dash-square fs-2"></i></a>
+                            <h2 class="text-start ps-4 pe-4"> {{prdc.quantity}} </h2>
+                            <a href="{{url_for('Add_to_card',id=prdc.thing.id)}}"><i class="bi bi-plus-square fs-2"></i></a>
+                        </div>
+                        <a href="{{ url_for('Delete_purhcase', id=prdc.thing.id) }}" class="btn btn-danger mt-2">Delete</a>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <h4 class="text-center text-muted">totall amount to pay: ${{total_amount}}</h4>
+                <form action="{{ url_for('create_checkout_session') }}" method="POST">
+                <button type="submit" class="btn btn-primary">Buyyyy Now</button>
+                </form>
+
+            </div>
+{%endif%}
+{% include "footer.html" %}
+

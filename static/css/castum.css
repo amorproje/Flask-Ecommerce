@@ -1,0 +1,6 @@
+.resized-img {
+    width: 200px !important;  /* Set the desired width */
+    height: 200px !important; /* Set the desired height */
+    object-fit: cover !important; /* Ensures images fit within the size while maintaining their aspect ratio */
+
+}

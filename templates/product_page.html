@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <!-- Product Card -->
+                <div class="card shadow-sm">
+                    <img src="{{prdc.image_url}}" class="card-img-top" alt="Product Image">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">{{prdc.name}}</h3>
+                        <h5 class="card-text text-muted">{{prdc.decription}}</h5>
+                        <p class="card-text text-muted">{{prdc.price}}</p>
+                        <a href="{{url_for('Add_to_card',id=prdc.id)}}" class="btn btn-primary">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include "footer.html" %}
